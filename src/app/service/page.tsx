@@ -36,6 +36,9 @@ const Page = () => {
       <div className="w-screen h-screen bg-custom-gradient">
         <TopNav />
         <CategoryNav />
+        <div className="text-white font-sans font-bold text-4xl flex justify-center w-screen">
+          Fetching...
+        </div>
       </div>
     );
   }
