@@ -34,7 +34,9 @@ const socialAccountsStyle: CSS.Properties = {
 export const TopNav = () => {
   return (
     <div style={topNavContainer}>
-      <div style={logoStyle}>IT SERVICE</div>
+      <Link style={logoStyle} href={"/"}>
+        IT SERVICE
+      </Link>
       <div style={socialAccountsStyle}>
         <Link href="https://www.facebook.com/tsomo.tsolmon.9887">
           <Facebook className="hover:text-blue-600 hover:cursor-pointer" />

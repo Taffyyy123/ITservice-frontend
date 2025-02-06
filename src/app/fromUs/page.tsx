@@ -1,12 +1,13 @@
+import BottomNav from "@/custom-components/bottomNav";
 import { CategoryNav } from "@/custom-components/category-nav";
 import { TopNav } from "@/custom-components/top-nav";
 
 const Page = () => {
   return (
-    <div className="min-h-screen w-screen bg-custom-gradient pb-24">
+    <div className="min-h-screen w-screen bg-custom-gradient ">
       <TopNav />
       <CategoryNav />
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-16 pb-24">
         <div className="w-screen flex flex-col items-center justify-center gap-10 ">
           <div className="text-white font-sans font-bold text-4xl">
             Бид бол IT SERVICE
@@ -73,6 +74,7 @@ const Page = () => {
           </div>
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 };

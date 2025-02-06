@@ -4,6 +4,7 @@ import { TopNav } from "@/custom-components/top-nav";
 import { useEffect, useState } from "react";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
+import BottomNav from "@/custom-components/bottomNav";
 
 type postType = {
   _id: string;
@@ -60,7 +61,7 @@ const Page = () => {
                 {post.content}
               </div>
               <Link
-                className="text-white bg-blue-600 rounded-md w-2/6 h-1/6"
+                className="text-white bg-blue-600 rounded-md w-2/6 h-1/6 flex justify-center items-center"
                 href={`/posts/${post._id}`}
               >
                 Цааш уншах
@@ -69,6 +70,7 @@ const Page = () => {
           </div>
         ))}
       </div>
+      <BottomNav />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 "use client";
+import BottomNav from "@/custom-components/bottomNav";
 import { CategoryNav } from "@/custom-components/category-nav";
 import { TopNav } from "@/custom-components/top-nav";
 import Link from "next/link";
@@ -70,6 +71,7 @@ const Page = () => {
           );
         })}
       </div>
+      <BottomNav />
     </div>
   );
 };

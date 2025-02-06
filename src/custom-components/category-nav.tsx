@@ -24,15 +24,21 @@ export const CategoryNav = () => {
     lineHeight: "28px",
   };
   const categoryText: CSS.Properties = {
-    width: "25%",
+    width: "20%",
     borderRight: "2px solid",
     display: "flex",
     justifyContent: "center",
   };
   const categoryContact: CSS.Properties = {
-    width: "25%",
+    width: "20%",
     display: "flex",
     justifyContent: "center",
+  };
+  const loginBtn: CSS.Properties = {
+    backgroundColor: "#00adea",
+    width: "10%",
+    color: "white",
+    fontFamily: "monospace",
   };
   useEffect(() => {
     if (window.location.pathname === "/service") {
@@ -74,11 +80,14 @@ export const CategoryNav = () => {
         </Link>
         <Link
           className={isClickedContact ? "text-white" : "text-neutral-400"}
-          style={categoryContact}
+          style={categoryText}
           href={"/contact"}
         >
           Холбоо барих
         </Link>
+        <button style={loginBtn} className="text-sm">
+          Нэвтрэх
+        </button>
       </div>
     </div>
   );
