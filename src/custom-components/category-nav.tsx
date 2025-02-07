@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import CSS from "csstype";
+import { UserPen } from "lucide-react";
 
 export const CategoryNav = () => {
   const [isClickedService, setIsClickedService] = useState<boolean>(false);
@@ -29,16 +30,17 @@ export const CategoryNav = () => {
     display: "flex",
     justifyContent: "center",
   };
-  const categoryContact: CSS.Properties = {
-    width: "20%",
-    display: "flex",
-    justifyContent: "center",
-  };
   const loginBtn: CSS.Properties = {
     backgroundColor: "#00adea",
-    width: "10%",
+    width: "15%",
     color: "white",
     fontFamily: "monospace",
+    marginLeft: "24px",
+    display: "flex",
+    gap: "5px",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "5px",
   };
   useEffect(() => {
     if (window.location.pathname === "/service") {
@@ -85,8 +87,13 @@ export const CategoryNav = () => {
         >
           Холбоо барих
         </Link>
-        <button style={loginBtn} className="text-sm">
+        <button
+          style={loginBtn}
+          className="text-sm rounded-xl"
+          onClick={() => (window.location.href = "/adminLogin")}
+        >
           Нэвтрэх
+          <UserPen />
         </button>
       </div>
     </div>
