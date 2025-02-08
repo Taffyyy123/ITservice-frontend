@@ -52,7 +52,7 @@ const Page = ({ params }: { params: Promise<{ requestId: string }> }) => {
           <p className="text-center text-gray-400">Loading...</p>
         )}
         <button
-          onClick={() => router.push("/adminPage/requests")}
+          onClick={() => router.push("/adminPage")}
           className="mt-6 w-full bg-blue-500 text-white py-2 rounded-lg font-bold hover:bg-blue-700 transition"
         >
           Back to Requests
