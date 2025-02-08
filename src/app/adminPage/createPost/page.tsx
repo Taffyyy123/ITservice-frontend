@@ -54,7 +54,6 @@ const Page = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-custom-gradient">
-      <TopNav />
       <div className="w-full max-w-lg bg-gray-900 p-8 rounded-xl shadow-lg ">
         <h1 className="text-3xl font-semibold text-center text-white mb-6">
           Create New Post

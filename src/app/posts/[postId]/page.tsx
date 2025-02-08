@@ -20,7 +20,7 @@ const Page = ({ params }: { params: Promise<{ postId: string }> }) => {
   const getOnePost = async () => {
     try {
       const jsonData = await fetch(
-        `https://it-service-backend.onrender.com/post/${postId}`
+        `https://it-service-backend.onrender.com/post/getPost/${postId}`
       );
       const response = await jsonData.json();
       setPost(response);

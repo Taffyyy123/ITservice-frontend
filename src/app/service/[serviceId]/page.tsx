@@ -19,7 +19,7 @@ const Page = ({ params }: { params: Promise<{ serviceId: string }> }) => {
   const getOneService = async () => {
     try {
       const response = await fetch(
-        `https://it-service-backend.onrender.com/service/${serviceId}`
+        `https://it-service-backend.onrender.com/service/getService/${serviceId}`
       );
 
       if (!response.ok) {
