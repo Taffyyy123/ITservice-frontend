@@ -2,6 +2,7 @@
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import Link from "next/link";
 import CSS from "csstype";
+import { useState } from "react";
 
 const topNavContainer: CSS.Properties = {
   display: "flex",
@@ -32,17 +33,34 @@ const socialAccountsStyle: CSS.Properties = {
 };
 
 export const TopNav = () => {
+  const [isHoveredFb, setIsHoveredFb] = useState(false);
+  const [isHoveredTwi, setIsHoveredTwi] = useState(false);
+  const [isHoveredIg, setIsHoveredIg] = useState(false);
+
   return (
     <div style={topNavContainer}>
       <Link style={logoStyle} href={"/"}>
         IT SERVICE
       </Link>
       <div style={socialAccountsStyle}>
-        <Link href="https://www.facebook.com/tsomo.tsolmon.9887">
-          <Facebook className="hover:text-blue-600 hover:cursor-pointer" />
-        </Link>
-        <Twitter className="hover:text-blue-400 hover:cursor-pointer" />
-        <Instagram className="hover:text-pink-500 hover:cursor-pointer" />
+        <Facebook
+          className="hover:cursor-pointer"
+          style={{ color: isHoveredFb ? "blue" : "" }}
+          onMouseEnter={() => setIsHoveredFb(true)}
+          onMouseLeave={() => setIsHoveredFb(false)}
+        />
+        <Twitter
+          className="hover:cursor-pointer"
+          style={{ color: isHoveredTwi ? "cyan" : "" }}
+          onMouseEnter={() => setIsHoveredTwi(true)}
+          onMouseLeave={() => setIsHoveredTwi(false)}
+        />
+        <Instagram
+          className="hover:cursor-pointer"
+          style={{ color: isHoveredIg ? "red" : "" }}
+          onMouseEnter={() => setIsHoveredIg(true)}
+          onMouseLeave={() => setIsHoveredIg(false)}
+        />
       </div>
     </div>
   );

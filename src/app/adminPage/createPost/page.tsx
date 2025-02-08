@@ -27,7 +27,7 @@ const Page = () => {
   };
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const response = await fetch(
-      "https://itservice-backend.onrender.com/post/createPost",
+      "https://it-service-backend.onrender.com/post/createPost",
       {
         method: "POST",
         headers: {

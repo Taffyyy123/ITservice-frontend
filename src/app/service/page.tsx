@@ -19,7 +19,7 @@ const Page = () => {
     setLoading(true);
     try {
       const jsonData = await fetch(
-        "https://itservice-backend.onrender.com/service/getServices"
+        "https://it-service-backend.onrender.com/service/getServices"
       );
       const response = await jsonData.json();
       setServices(response);

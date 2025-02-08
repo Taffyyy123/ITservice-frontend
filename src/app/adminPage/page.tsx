@@ -19,9 +19,17 @@ type Service = {
   caption: string;
   price: string;
 };
+type Request = {
+  _id: string;
+  name: string;
+  phone: string;
+  email: string;
+  request: string;
+};
 const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [services, setServices] = useState<Service[]>([]);
+  const [requests, setRequests] = useState<Request[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -45,13 +53,14 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
       setIsAuthenticated(true);
       fetchPosts();
       fetchServices();
+      fetchRequests();
     }
   }, []);
 
   const fetchPosts = async () => {
     try {
       const response = await fetch(
-        "https://itservice-backend.onrender.com/post/getPosts"
+        "https://it-service-backend.onrender.com/post/getPosts"
       );
       const data = await response.json();
       setPosts(data);
@@ -63,7 +72,7 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
   const fetchServices = async () => {
     try {
       const response = await fetch(
-        "https://itservice-backend.onrender.com/service/getServices"
+        "https://it-service-backend.onrender.com/service/getServices"
       );
       const data = await response.json();
       setServices(data);
@@ -72,10 +81,22 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
     }
   };
 
+  const fetchRequests = async () => {
+    try {
+      const response = await fetch(
+        "https://it-service-backend.onrender.com/request/getRequests"
+      );
+      const data = await response.json();
+      setRequests(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleDeletePost = async (postId: string) => {
     try {
       const response = await fetch(
-        `https://itservice-backend.onrender.com/post/delete/${postId}`,
+        `https://it-service-backend.onrender.com/post/delete/${postId}`,
         {
           method: "DELETE",
         }
@@ -92,7 +113,7 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
   const handleDeleteService = async (serviceId: string) => {
     try {
       const response = await fetch(
-        `https://itservice-backend.onrender.com/service/delete/${serviceId}`,
+        `https://it-service-backend.onrender.com/service/delete/${serviceId}`,
         {
           method: "DELETE",
         }
@@ -110,7 +131,7 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
   useEffect(() => {
     if (serviceId) {
       fetch(
-        `https://itservice-backend.onrender.com/service/getService/${serviceId}`
+        `https://it-service-backend.onrender.com/service/getService/${serviceId}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -124,7 +145,7 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
   }, [serviceId]);
   useEffect(() => {
     if (postId) {
-      fetch(`https://itservice-backend.onrender.com/post/getPost/${postId}`)
+      fetch(`https://it-service-backend.onrender.com/post/getPost/${postId}`)
         .then((res) => res.json())
         .then((data) => {
           setTitle(data.title);
@@ -138,7 +159,7 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
   }, [postId]);
   const handleSubmitService = async () => {
     const response = await fetch(
-      `https://itservice-backend.onrender.com/service/update/${serviceId}`,
+      `https://it-service-backend.onrender.com/service/update/${serviceId}`,
       {
         method: "PUT",
         headers: {
@@ -159,7 +180,7 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
   };
   const handleSubmitPost = async () => {
     const response = await fetch(
-      `https://itservice-backend.onrender.com/post/update/${postId}`,
+      `https://it-service-backend.onrender.com/post/update/${postId}`,
       {
         method: "PUT",
         headers: {
@@ -382,6 +403,31 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
             </div>
           </div>
         ))}
+      </div>
+
+      <h2 className="text-2xl font-bold mt-6">Requests</h2>
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {requests.map((request) => {
+          return (
+            <div key={request._id} className="bg-gray-800 p-4 rounded-lg">
+              <h2 className="text-xl font-semibold">{request.name}</h2>
+              <p className="text-gray-400 mt-2">{request.request}</p>
+              <div className="flex justify-between mt-4">
+                <button
+                  className="bg-blue-500 text-white px-3 py-1 rounded"
+                  onClick={() =>
+                    (window.location.href = `/adminPage/${request._id}`)
+                  }
+                >
+                  More info
+                </button>
+                <button className="bg-red-600 text-white px-3 py-1 rounded">
+                  Delete
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

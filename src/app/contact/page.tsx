@@ -2,8 +2,37 @@
 import { CategoryNav } from "@/custom-components/category-nav";
 import { TopNav } from "@/custom-components/top-nav";
 import { Phone, MapPin, Mail } from "lucide-react";
+import { useState } from "react";
 
 const Page = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [request, setRequest] = useState("");
+
+  const handleSubmit = async () => {
+    const response = await fetch(
+      "https://it-service-backend.onrender.com/request/createRequest",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          request,
+        }),
+      }
+    );
+    if (response.ok) {
+      setName("");
+      setEmail("");
+      setPhone("");
+      setRequest("");
+    }
+  };
   return (
     <div className="h-screen w-screen bg-custom-gradient">
       <TopNav />
@@ -40,20 +69,31 @@ const Page = () => {
               <input
                 placeholder="Нэр"
                 className="text-black w-4/5 h-[40px] rounded-sm placeholder:text-neutral-600 placeholder:font-bold pl-6 font-mono font-bold"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
               />
               <input
                 placeholder="Утас"
                 className="text-black w-4/5 h-[40px] rounded-sm placeholder:text-neutral-600 placeholder:font-bold pl-6 font-mono font-bold"
+                onChange={(e) => setPhone(e.target.value)}
+                value={phone}
               />
               <input
                 placeholder="И-мэйл хаяг"
                 className="text-black w-4/5 h-[40px] rounded-sm placeholder:text-neutral-600 placeholder:font-bold pl-6 font-mono font-bold"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
               <input
                 placeholder="Саналаа бичнэ үү"
                 className="text-black w-4/5 h-[40px] rounded-sm placeholder:text-neutral-600 placeholder:font-bold pl-6 font-mono font-bold"
+                onChange={(e) => setRequest(e.target.value)}
+                value={request}
               />{" "}
-              <button className="text-white border-blue-600 bg-blue-600 rounded-sm w-1/5 font-bold h-[35px]">
+              <button
+                className="text-white border-blue-600 bg-blue-600 rounded-sm w-1/5 font-bold h-[35px]"
+                onClick={handleSubmit}
+              >
                 Илгээх
               </button>
             </div>

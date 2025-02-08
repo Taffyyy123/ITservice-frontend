@@ -10,7 +10,7 @@ const Page = () => {
   const handleSubmit = async () => {
     try {
       const response = await fetch(
-        "https://itservice-backend.onrender.com/admin/loginAdmin",
+        "https://it-service-backend.onrender.com/admin/loginAdmin",
         {
           method: "POST",
           headers: {

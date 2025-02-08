@@ -20,7 +20,7 @@ const Page = () => {
   const getPosts = async () => {
     try {
       const jsonData = await fetch(
-        "https://itservice-backend.onrender.com/post/getPosts"
+        "https://it-service-backend.onrender.com/post/getPosts"
       );
       const response = await jsonData.json();
       setPosts(response);

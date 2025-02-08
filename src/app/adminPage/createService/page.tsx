@@ -22,7 +22,7 @@ const Page = () => {
   };
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const response = await fetch(
-      "https://itservice-backend.onrender.com/service/createService",
+      "https://it-service-backend.onrender.com/service/createService",
       {
         method: "POST",
         headers: {
