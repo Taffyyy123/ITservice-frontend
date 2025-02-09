@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 export const LanguageSwitchBtn = () => {
-  const [isMongolian, setIsMongolian] = useState(true);
+  const { isMongolian, setIsMongolian } = useLanguage();
 
   return (
     <button

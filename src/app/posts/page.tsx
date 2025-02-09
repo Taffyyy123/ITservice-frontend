@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 import BottomNav from "@/custom-components/bottomNav";
+import { useLanguage } from "@/context/LanguageContext";
 
 type postType = {
   _id: string;
@@ -17,6 +18,7 @@ type postType = {
 };
 const Page = () => {
   const [posts, setPosts] = useState<postType[]>([]);
+  const { isMongolian } = useLanguage();
   const getPosts = async () => {
     try {
       const jsonData = await fetch(
@@ -36,7 +38,9 @@ const Page = () => {
       <TopNav />
       <CategoryNav />
       <div className="text-blue-600 font-serif font-bold flex justify-center text-4xl pb-12">
-        Сонирхолтой нийтлэлүүдийг эндээс
+        {isMongolian
+          ? "Сонирхолтой нийтлэлүүдийг эндээс"
+          : "Interesting articles from here"}
       </div>
       <div className="w-screen">
         {posts.map((post) => (

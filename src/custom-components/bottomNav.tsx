@@ -1,7 +1,9 @@
 "use client";
+import { useLanguage } from "@/context/LanguageContext";
 import { ArrowUp } from "lucide-react";
 
 const BottomNav = () => {
+  const { isMongolian } = useLanguage();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -22,7 +24,8 @@ const BottomNav = () => {
         className="text-neutral-400 flex gap-3"
         style={{ paddingRight: "64px" }}
       >
-        Дээшээ буцах
+        {isMongolian ? "Дээшээ буцах" : "Return to the top"}
+
         <ArrowUp />
       </button>
     </div>

@@ -3,12 +3,15 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import CSS from "csstype";
 import { UserPen } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const CategoryNav = () => {
   const [isClickedService, setIsClickedService] = useState<boolean>(false);
   const [isClickedFromUs, setIsClickedFromUs] = useState<boolean>(false);
   const [isClickedPosts, setIsClickedPosts] = useState<boolean>(false);
   const [isClickedContact, setIsClickedContact] = useState<boolean>(false);
+  const { isMongolian } = useLanguage();
+
   const categoryContainer: CSS.Properties = {
     display: "flex",
     width: "100%",
@@ -16,6 +19,7 @@ export const CategoryNav = () => {
     height: "100px",
     paddingBottom: "40px",
   };
+
   const categoryNavStyle: CSS.Properties = {
     display: "flex",
     width: "100vw",
@@ -24,12 +28,14 @@ export const CategoryNav = () => {
     fontSize: "20px",
     lineHeight: "28px",
   };
+
   const categoryText: CSS.Properties = {
     width: "20%",
     borderRight: "2px solid",
     display: "flex",
     justifyContent: "center",
   };
+
   const loginBtn: CSS.Properties = {
     backgroundColor: "#00adea",
     width: "15%",
@@ -42,6 +48,7 @@ export const CategoryNav = () => {
     alignItems: "center",
     padding: "5px",
   };
+
   useEffect(() => {
     if (window.location.pathname === "/service") {
       setIsClickedService(true);
@@ -56,6 +63,7 @@ export const CategoryNav = () => {
       setIsClickedContact(true);
     }
   }, []);
+
   return (
     <div style={categoryContainer}>
       <div style={categoryNavStyle}>
@@ -64,35 +72,35 @@ export const CategoryNav = () => {
           style={categoryText}
           href={"/service"}
         >
-          Үйлчилгээ
+          {isMongolian ? "Үйлчилгээ" : "Services"}
         </Link>
         <Link
           className={isClickedFromUs ? "text-white" : "text-neutral-400"}
           style={categoryText}
           href={"/fromUs"}
         >
-          Бидний тухай
+          {isMongolian ? "Бидний тухай" : "About Us"}
         </Link>{" "}
         <Link
           className={isClickedPosts ? "text-white" : "text-neutral-400"}
           style={categoryText}
           href={"/posts"}
         >
-          Нийтлэл
+          {isMongolian ? "Нийтлэл" : "Posts"}
         </Link>
         <Link
           className={isClickedContact ? "text-white" : "text-neutral-400"}
           style={categoryText}
           href={"/contact"}
         >
-          Холбоо барих
+          {isMongolian ? "Холбоо барих" : "Contact"}
         </Link>
         <button
           style={loginBtn}
           className="text-sm rounded-xl"
           onClick={() => (window.location.href = "/adminLogin")}
         >
-          Нэвтрэх
+          {isMongolian ? "Нэвтрэх" : "Login"}
           <UserPen />
         </button>
       </div>

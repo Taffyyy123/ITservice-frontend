@@ -1,4 +1,5 @@
 "use client";
+import { useLanguage } from "@/context/LanguageContext";
 import BottomNav from "@/custom-components/bottomNav";
 import { CategoryNav } from "@/custom-components/category-nav";
 import { TopNav } from "@/custom-components/top-nav";
@@ -22,9 +23,11 @@ type Post = {
   infoContent: string;
   imageUrl: string;
 };
+
 const HomePage = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
+  const { isMongolian } = useLanguage();
   const router = useRouter();
 
   useEffect(() => {
@@ -38,28 +41,35 @@ const HomePage = () => {
       .then((data) => setPosts(data))
       .catch((error) => console.error("Error fetching posts:", error));
   }, []);
+
   return (
     <div className="w-screen bg-custom-gradient min-h-screen">
       <TopNav />
       <CategoryNav />
-      <div className="text-center py-20  bg-custom-gradient shadow-lg">
+      <div className="text-center py-20 bg-custom-gradient shadow-lg">
         <h1 className="text-6xl font-extrabold text-white drop-shadow-lg">
-          Welcome to IT Service
+          {isMongolian
+            ? "IT Үйлчилгээтэй танилцаарай"
+            : "Welcome to IT Service"}
         </h1>
         <p className="text-xl mt-4 text-gray-200">
-          Providing top-notch IT solutions for your business
+          {isMongolian
+            ? "Таны бизнест зориулсан шилдэг IT шийдлүүдийг бид үзүүлнэ."
+            : "Providing top-notch IT solutions for your business"}
         </p>
         <button
           onClick={() => router.push("/fromUs")}
           className="mt-6 bg-white text-blue-600 px-6 py-3 rounded-full font-bold shadow-lg hover:bg-gray-200 transition transform hover:scale-105"
         >
-          From Us
+          {isMongolian ? "Бидний тухай" : "From Us"}
         </button>
       </div>
 
       <div className="py-16 px-6">
         <h2 className="text-4xl font-bold text-center text-blue-400">
-          Latest Posts & Services
+          {isMongolian
+            ? "Сүүлийн мэдээ ба үйлчилгээ"
+            : "Latest Posts & Services"}
         </h2>
         <Carousel
           showThumbs={false}
@@ -90,7 +100,7 @@ const HomePage = () => {
               </h3>
               <p className="text-gray-400 mt-4">{service.caption}</p>
               <p className="mt-4 font-bold text-yellow-400 text-xl">
-                {service.price}MNT
+                {service.price} {isMongolian ? "MNT" : "MNT"}
               </p>
             </div>
           ))}
@@ -98,13 +108,19 @@ const HomePage = () => {
       </div>
 
       <div className="text-center py-20 bg-custom-gradient shadow-2xl from-gray-800 to-gray-900">
-        <h2 className="text-4xl font-bold text-white">Get in Touch</h2>
-        <p className="mt-6 text-gray-300">Have questions? Contact us today!</p>
+        <h2 className="text-4xl font-bold text-white">
+          {isMongolian ? "Бидэнтэй холбоо бариарай" : "Get in Touch"}
+        </h2>
+        <p className="mt-6 text-gray-300">
+          {isMongolian
+            ? "Асуулт байвал бидэнд хандана уу!"
+            : "Have questions? Contact us today!"}
+        </p>
         <button
           onClick={() => router.push("/contact")}
           className="mt-8 bg-blue-500 px-8 py-4 rounded-full font-bold text-white shadow-lg hover:bg-blue-700 transition transform hover:scale-105"
         >
-          Contact Us
+          {isMongolian ? "Холбоо барих" : "Contact Us"}
         </button>
       </div>
       <BottomNav />
