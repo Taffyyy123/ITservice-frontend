@@ -1,4 +1,5 @@
 "use client";
+import { useLanguage } from "@/context/LanguageContext";
 import BottomNav from "@/custom-components/bottomNav";
 import { CategoryNav } from "@/custom-components/category-nav";
 import { TopNav } from "@/custom-components/top-nav";
@@ -8,12 +9,15 @@ import { useEffect, useState } from "react";
 type serviceType = {
   _id: string;
   infoImg: string;
-  subTitle: string;
-  caption: string;
+  subTitleMn: string;
+  captionMn: string;
+  subTitleEn: string;
+  captionEn: string;
 }[];
 
 const Page = () => {
   const [services, setServices] = useState<serviceType>([]);
+  const { isMongolian } = useLanguage();
   const [loading, setLoading] = useState<boolean>(true);
   const getServices = async () => {
     setLoading(true);
@@ -34,7 +38,7 @@ const Page = () => {
   }, []);
   if (loading) {
     return (
-      <div className="w-screen h-screen bg-custom-gradient">
+      <div className="w-screen min-h-screen bg-custom-gradient relative">
         <TopNav />
         <CategoryNav />
         <div className="text-white font-sans font-bold text-4xl flex justify-center w-screen">
@@ -44,7 +48,7 @@ const Page = () => {
     );
   }
   return (
-    <div className="w-screen bg-custom-gradient">
+    <div className="w-screen bg-custom-gradient min-h-screen">
       <TopNav />
       <CategoryNav />
       <div className="w-screen flex flex-col gap-12 h-full">
@@ -61,10 +65,10 @@ const Page = () => {
               />
               <div className="flex flex-col pt-6 gap-4 w-3/5">
                 <div className="text-white font-sans font-bold text-xl">
-                  {service.subTitle}
+                  {isMongolian ? service.subTitleMn : service.subTitleEn}
                 </div>
                 <div className="text-neutral-400 font-medium text-md">
-                  {service.caption}
+                  {isMongolian ? service.captionMn : service.captionEn}
                 </div>
               </div>
             </Link>

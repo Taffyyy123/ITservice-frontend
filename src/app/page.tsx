@@ -11,16 +11,22 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 type Service = {
   _id: string;
   infoImg: string;
-  subTitle: string;
-  caption: string;
+  subTitleMn: string;
+  subTitleEn: string;
+  captionMn: string;
+  captionEn: string;
   price: string;
 };
 type Post = {
   _id: string;
-  title: string;
-  content: string;
-  infoTitle: string;
-  infoContent: string;
+  titleMn: string;
+  contentMn: string;
+  infoTitleMn: string;
+  infoContentMn: string;
+  titleEn: string;
+  contentEn: string;
+  infoTitleEn: string;
+  infoContentEn: string;
   imageUrl: string;
 };
 
@@ -83,10 +89,10 @@ const HomePage = () => {
               className="p-8 rounded-xl shadow-lg text-center h-full text-white bg-gray-800"
             >
               <h3 className="text-2xl font-semibold text-white">
-                {post.title}
+                {isMongolian ? post.titleMn : post.titleEn}
               </h3>
               <p className="text-white mt-4">
-                {post.content.substring(0, 100)}...
+                {isMongolian ? post.contentMn : post.contentEn}
               </p>
             </div>
           ))}
@@ -96,9 +102,11 @@ const HomePage = () => {
               className="bg-gray-800 p-8 rounded-xl shadow-lg text-center h-full"
             >
               <h3 className="text-2xl font-semibold text-green-300">
-                {service.subTitle}
+                {isMongolian ? service.subTitleMn : service.subTitleEn}
               </h3>
-              <p className="text-gray-400 mt-4">{service.caption}</p>
+              <p className="text-gray-400 mt-4">
+                {isMongolian ? service.captionMn : service.captionEn}
+              </p>
               <p className="mt-4 font-bold text-yellow-400 text-xl">
                 {service.price} {isMongolian ? "MNT" : "MNT"}
               </p>

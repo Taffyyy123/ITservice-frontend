@@ -4,23 +4,40 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Page = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [infoTitle, setInfoTitle] = useState("");
-  const [infoContent, setInfoContent] = useState("");
+  const [titleMn, setTitleMn] = useState("");
+  const [titleEn, setTitleEn] = useState("");
+  const [contentMn, setContentMn] = useState("");
+  const [contentEn, setContentEn] = useState("");
+  const [infoTitleMn, setInfoTitleMn] = useState("");
+  const [infoTitleEn, setInfoTitleEn] = useState("");
+  const [infoContentMn, setInfoContentMn] = useState("");
+  const [infoContentEn, setInfoContentEn] = useState("");
+
   const [imageUrl, setImageUrl] = useState("");
   const router = useRouter();
-  const getTitle = (e: { target: { value: string } }) => {
-    setTitle(e.target.value);
+  const getTitleMn = (e: { target: { value: string } }) => {
+    setTitleMn(e.target.value);
   };
-  const getContent = (e: { target: { value: string } }) => {
-    setContent(e.target.value);
+  const getTitleEn = (e: { target: { value: string } }) => {
+    setTitleEn(e.target.value);
   };
-  const getInfoContent = (e: { target: { value: string } }) => {
-    setInfoContent(e.target.value);
+  const getContentMn = (e: { target: { value: string } }) => {
+    setContentMn(e.target.value);
   };
-  const getInfoTitle = (e: { target: { value: string } }) => {
-    setInfoTitle(e.target.value);
+  const getContentEn = (e: { target: { value: string } }) => {
+    setContentEn(e.target.value);
+  };
+  const getInfoContentMn = (e: { target: { value: string } }) => {
+    setInfoContentMn(e.target.value);
+  };
+  const getInfoContentEn = (e: { target: { value: string } }) => {
+    setInfoContentEn(e.target.value);
+  };
+  const getInfoTitleMn = (e: { target: { value: string } }) => {
+    setInfoTitleMn(e.target.value);
+  };
+  const getInfoTitleEn = (e: { target: { value: string } }) => {
+    setInfoTitleEn(e.target.value);
   };
   const getImageUrl = (e: { target: { value: string } }) => {
     setImageUrl(e.target.value);
@@ -34,20 +51,28 @@ const Page = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          title,
-          content,
-          infoTitle,
-          infoContent,
+          titleMn,
+          contentMn,
+          infoTitleMn,
+          infoContentMn,
+          titleEn,
+          contentEn,
+          infoTitleEn,
+          infoContentEn,
           imageUrl,
         }),
       }
     );
     if (response.ok) {
       router.push("/adminPage");
-      setTitle("");
-      setContent("");
-      setInfoTitle("");
-      setInfoContent("");
+      setTitleMn("");
+      setContentMn("");
+      setInfoTitleMn("");
+      setInfoContentMn("");
+      setTitleEn("");
+      setContentEn("");
+      setInfoTitleEn("");
+      setInfoContentEn("");
       setImageUrl("");
     }
   };
@@ -61,27 +86,51 @@ const Page = () => {
         <div className="flex flex-col space-y-4">
           <input
             className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-            placeholder="Title"
-            onChange={getTitle}
-            value={title}
+            placeholder="TitleMn"
+            onChange={getTitleMn}
+            value={titleMn}
           />
           <input
             className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-            placeholder="Content"
-            onChange={getContent}
-            value={content}
+            placeholder="TitleEn"
+            onChange={getTitleEn}
+            value={titleEn}
           />
           <input
             className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-            placeholder="InfoTitle"
-            onChange={getInfoTitle}
-            value={infoTitle}
+            placeholder="ContentMn"
+            onChange={getContentMn}
+            value={contentMn}
           />
           <input
             className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-            placeholder="InfoContent"
-            onChange={getInfoContent}
-            value={infoContent}
+            placeholder="ContentEn"
+            onChange={getContentEn}
+            value={contentEn}
+          />
+          <input
+            className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+            placeholder="InfoTitleMn"
+            onChange={getInfoTitleMn}
+            value={infoTitleMn}
+          />
+          <input
+            className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+            placeholder="InfoTitleEn"
+            onChange={getInfoTitleEn}
+            value={infoTitleEn}
+          />
+          <input
+            className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+            placeholder="InfoContentMn"
+            onChange={getInfoContentMn}
+            value={infoContentMn}
+          />
+          <input
+            className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+            placeholder="InfoContentEn"
+            onChange={getInfoContentEn}
+            value={infoContentEn}
           />
           <input
             className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"

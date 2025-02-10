@@ -1,4 +1,5 @@
 "use client";
+import { useLanguage } from "@/context/LanguageContext";
 import { CategoryNav } from "@/custom-components/category-nav";
 import { TopNav } from "@/custom-components/top-nav";
 import { use, useEffect, useState } from "react";
@@ -6,13 +7,16 @@ import { use, useEffect, useState } from "react";
 type ServiceType = {
   _id: string;
   infoImg: string;
-  subTitle: string;
-  caption: string;
+  subTitleMn: string;
+  captionMn: string;
+  subTitleEn: string;
+  captionEn: string;
   price: string;
 };
 
 const Page = ({ params }: { params: Promise<{ serviceId: string }> }) => {
   const [service, setService] = useState<ServiceType | null>(null);
+  const { isMongolian } = useLanguage();
 
   const { serviceId } = use(params);
 
@@ -55,9 +59,11 @@ const Page = ({ params }: { params: Promise<{ serviceId: string }> }) => {
         <img src={service.infoImg} className="w-2/5 h-[300px] rounded-md" />
         <div className="flex flex-col items-center gap-3 w-3/5">
           <div className="text-white flex justify-start font-serif font-bold text-2xl">
-            {service.subTitle}
+            {isMongolian ? service.subTitleMn : service.subTitleEn}
           </div>
-          <div className="text-neutral-500 text-center">{service.caption}</div>
+          <div className="text-neutral-500 text-center">
+            {isMongolian ? service.captionMn : service.captionEn}
+          </div>
         </div>
         <div className="border-2 w-3/5 p-8 flex justify-around">
           <div>
@@ -67,7 +73,7 @@ const Page = ({ params }: { params: Promise<{ serviceId: string }> }) => {
             <div className="text-white">САРЫН/НӨАТ-гүй</div>
           </div>
           <button className="text-white bg-blue-600 w-1/6 rounded-md">
-            Захиалах
+            {isMongolian ? "Захиалах" : "Order"}
           </button>
         </div>
       </div>

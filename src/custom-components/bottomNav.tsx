@@ -9,11 +9,10 @@ const BottomNav = () => {
   };
   return (
     <div
-      className="bg-custom-gradient w-screen pt-8 pb-8 flex"
+      className="bg-custom-gradient w-screen pt-8 pb-8 flex fixed"
       style={{
         justifyContent: "space-between",
-        borderTop: "1px solid white",
-        height: "100px",
+        bottom: "0",
       }}
     >
       <div className="text-neutral-400" style={{ paddingLeft: "64px" }}>

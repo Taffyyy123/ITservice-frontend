@@ -9,10 +9,14 @@ import { useLanguage } from "@/context/LanguageContext";
 
 type postType = {
   _id: string;
-  title: string;
-  content: string;
-  infoTitle: string;
-  infoContent: string;
+  titleMn: string;
+  contentMn: string;
+  infoTitleMn: string;
+  infoContentMn: string;
+  titleEn: string;
+  contentEn: string;
+  infoTitleEn: string;
+  infoContentEn: string;
   imageUrl: string;
   createdAt: Date;
 };
@@ -55,20 +59,20 @@ const Page = () => {
             />
             <div className="flex flex-col gap-6 w-3/6 justify-center">
               <div className="text-white font-sans font-bold text-3xl">
-                {post.title}
+                {isMongolian ? post.titleMn : post.titleEn}
               </div>
               <div className="text-neutral-400 flex gap-3">
                 <Calendar />
                 {new Date(post.createdAt).toLocaleDateString()}
               </div>
               <div className="text-white font-mono font-bold text-md">
-                {post.content}
+                {isMongolian ? post.contentMn : post.contentEn}
               </div>
               <Link
-                className="text-white bg-blue-600 rounded-md w-2/6 h-1/6 flex justify-center items-center"
+                className="text-white bg-blue-600 rounded-md w-1/5 h-2/6 flex justify-center items-center"
                 href={`/posts/${post._id}`}
               >
-                Цааш уншах
+                {isMongolian ? "Цааш уншах" : "Read more"}
               </Link>
             </div>
           </div>

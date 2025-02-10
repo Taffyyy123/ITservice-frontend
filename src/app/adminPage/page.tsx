@@ -5,18 +5,24 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 type Post = {
   _id: string;
-  title: string;
-  content: string;
-  infoTitle: string;
-  infoContent: string;
+  titleMn: string;
+  contentMn: string;
+  infoTitleMn: string;
+  infoContentMn: string;
+  titleEn: string;
+  contentEn: string;
+  infoTitleEn: string;
+  infoContentEn: string;
   imageUrl: string;
 };
 
 type Service = {
   _id: string;
   infoImg: string;
-  subTitle: string;
-  caption: string;
+  subTitleMn: string;
+  captionMn: string;
+  subTitleEn: string;
+  captionEn: string;
   price: string;
 };
 type Request = {
@@ -31,14 +37,20 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
   const [services, setServices] = useState<Service[]>([]);
   const [requests, setRequests] = useState<Request[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [infoTitle, setInfoTitle] = useState("");
-  const [infoContent, setInfoContent] = useState("");
+  const [titleMn, setTitleMn] = useState("");
+  const [titleEn, setTitleEn] = useState("");
+  const [contentMn, setContentMn] = useState("");
+  const [contentEn, setContentEn] = useState("");
+  const [infoTitleMn, setInfoTitleMn] = useState("");
+  const [infoTitleEn, setInfoTitleEn] = useState("");
+  const [infoContentMn, setInfoContentMn] = useState("");
+  const [infoContentEn, setInfoContentEn] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [infoImg, setInfoImg] = useState("");
-  const [subTitle, setSubTitle] = useState("");
-  const [caption, setCaption] = useState("");
+  const [subTitleMn, setSubTitleMn] = useState("");
+  const [subTitleEn, setSubTitleEn] = useState("");
+  const [captionMn, setCaptionMn] = useState("");
+  const [captionEn, setCaptionEn] = useState("");
   const [price, setPrice] = useState("");
   const [isOpenService, setIsOpenService] = useState(false);
   const [isOpenPost, setIsOpenPost] = useState(false);
@@ -136,8 +148,10 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
         .then((res) => res.json())
         .then((data) => {
           setInfoImg(data.infoImg);
-          setSubTitle(data.subTitle);
-          setCaption(data.caption);
+          setSubTitleMn(data.subTitleMn);
+          setCaptionMn(data.captionMn);
+          setSubTitleEn(data.subTitleEn);
+          setCaptionEn(data.captionEn);
           setPrice(data.price);
         })
         .catch((error) => console.error(error));
@@ -148,11 +162,15 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
       fetch(`https://it-service-backend.onrender.com/post/getPost/${postId}`)
         .then((res) => res.json())
         .then((data) => {
-          setTitle(data.title);
-          setContent(data.content);
-          setInfoTitle(data.infoTitle);
-          setInfoContent(data.infoContent);
+          setTitleMn(data.titleMn);
+          setContentMn(data.contentMn);
+          setInfoTitleMn(data.infoTitleMn);
+          setInfoContentMn(data.infoContentMn);
           setImageUrl(data.imageUrl);
+          setTitleEn(data.titleEn);
+          setContentEn(data.contentEn);
+          setInfoTitleEn(data.infoTitleEn);
+          setInfoContentEn(data.infoContentEn);
         })
         .catch((error) => console.error(error));
     }
@@ -167,8 +185,10 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
         },
         body: JSON.stringify({
           infoImg,
-          subTitle,
-          caption,
+          subTitleMn,
+          captionMn,
+          subTitleEn,
+          captionEn,
           price,
         }),
       }
@@ -188,10 +208,14 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
         },
         body: JSON.stringify({
           imageUrl,
-          title,
-          infoTitle,
-          infoContent,
-          content,
+          titleMn,
+          infoTitleMn,
+          infoContentMn,
+          contentMn,
+          titleEn,
+          infoTitleEn,
+          infoContentEn,
+          contentEn,
         }),
       }
     );
@@ -253,9 +277,9 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (
           <div key={post._id} className="bg-gray-800 p-4 rounded-lg">
-            <h2 className="text-xl font-semibold">{post.title}</h2>
+            <h2 className="text-xl font-semibold">{post.titleMn}</h2>
             <p className="text-gray-400 mt-2">
-              {post.content.substring(0, 100)}...
+              {post.contentMn.substring(0, 100)}...
             </p>
             <div className="flex justify-between mt-4">
               <button
@@ -279,27 +303,51 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
                       />
                       <input
                         className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-                        placeholder="Title"
-                        onChange={(e) => setTitle(e.target.value)}
-                        value={title}
+                        placeholder="TitleMn"
+                        onChange={(e) => setTitleMn(e.target.value)}
+                        value={titleMn}
                       />
                       <input
                         className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-                        placeholder="Content"
-                        onChange={(e) => setContent(e.target.value)}
-                        value={content}
+                        placeholder="TitleEn"
+                        onChange={(e) => setTitleEn(e.target.value)}
+                        value={titleEn}
                       />
                       <input
                         className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-                        placeholder="InfoTitle"
-                        onChange={(e) => setInfoTitle(e.target.value)}
-                        value={infoTitle}
+                        placeholder="ContentMn"
+                        onChange={(e) => setContentMn(e.target.value)}
+                        value={contentMn}
                       />
                       <input
                         className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-                        placeholder="InfoContent"
-                        onChange={(e) => setInfoContent(e.target.value)}
-                        value={infoContent}
+                        placeholder="ContentEn"
+                        onChange={(e) => setContentEn(e.target.value)}
+                        value={contentEn}
+                      />
+                      <input
+                        className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+                        placeholder="InfoTitleMn"
+                        onChange={(e) => setInfoTitleMn(e.target.value)}
+                        value={infoTitleMn}
+                      />
+                      <input
+                        className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+                        placeholder="InfoTitleEn"
+                        onChange={(e) => setInfoTitleEn(e.target.value)}
+                        value={infoTitleEn}
+                      />
+                      <input
+                        className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+                        placeholder="InfoContentMn"
+                        onChange={(e) => setInfoContentMn(e.target.value)}
+                        value={infoContentMn}
+                      />
+                      <input
+                        className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+                        placeholder="InfoContentEn"
+                        onChange={(e) => setInfoContentEn(e.target.value)}
+                        value={infoContentEn}
                       />
                       <div className="flex justify-between">
                         <button
@@ -334,9 +382,9 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service) => (
           <div key={service._id} className="bg-gray-800 p-4 rounded-lg">
-            <h2 className="text-xl font-semibold">{service.subTitle}</h2>
+            <h2 className="text-xl font-semibold">{service.subTitleMn}</h2>
             <p className="text-gray-400 mt-2">
-              {service.caption.substring(0, 100)}...
+              {service.captionMn.substring(0, 100)}
             </p>
             <div className="flex justify-between mt-4">
               <button
@@ -360,15 +408,27 @@ const AdminPage = ({ params }: { params: Promise<{ serviceId: string }> }) => {
                       />
                       <input
                         className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-                        placeholder="SubTitle"
-                        onChange={(e) => setSubTitle(e.target.value)}
-                        value={subTitle}
+                        placeholder="SubTitleMn"
+                        onChange={(e) => setSubTitleMn(e.target.value)}
+                        value={subTitleMn}
                       />
                       <input
                         className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-                        placeholder="Caption"
-                        onChange={(e) => setCaption(e.target.value)}
-                        value={caption}
+                        placeholder="SubTitleEn"
+                        onChange={(e) => setSubTitleEn(e.target.value)}
+                        value={subTitleEn}
+                      />
+                      <input
+                        className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+                        placeholder="CaptionMn"
+                        onChange={(e) => setCaptionMn(e.target.value)}
+                        value={captionMn}
+                      />
+                      <input
+                        className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+                        placeholder="CaptionEn"
+                        onChange={(e) => setCaptionEn(e.target.value)}
+                        value={captionEn}
                       />
                       <input
                         className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"

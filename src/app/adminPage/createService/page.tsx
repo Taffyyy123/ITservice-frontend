@@ -4,18 +4,26 @@ import { useState } from "react";
 
 const Page = () => {
   const [infoImg, setInfoImg] = useState("");
-  const [subTitle, setSubTitle] = useState("");
-  const [caption, setCaption] = useState("");
+  const [subTitleMn, setSubTitleMn] = useState("");
+  const [captionMn, setCaptionMn] = useState("");
+  const [subTitleEn, setSubTitleEn] = useState("");
+  const [captionEn, setCaptionEn] = useState("");
   const [price, setPrice] = useState("");
   const router = useRouter();
   const getInfoImg = (e: { target: { value: string } }) => {
     setInfoImg(e.target.value);
   };
-  const getSubTitle = (e: { target: { value: string } }) => {
-    setSubTitle(e.target.value);
+  const getSubTitleMn = (e: { target: { value: string } }) => {
+    setSubTitleMn(e.target.value);
   };
-  const getCaption = (e: { target: { value: string } }) => {
-    setCaption(e.target.value);
+  const getSubTitleEn = (e: { target: { value: string } }) => {
+    setSubTitleEn(e.target.value);
+  };
+  const getCaptionMn = (e: { target: { value: string } }) => {
+    setCaptionMn(e.target.value);
+  };
+  const getCaptionEn = (e: { target: { value: string } }) => {
+    setCaptionEn(e.target.value);
   };
   const getPrice = (e: { target: { value: string } }) => {
     setPrice(e.target.value);
@@ -30,8 +38,10 @@ const Page = () => {
         },
         body: JSON.stringify({
           infoImg,
-          subTitle,
-          caption,
+          subTitleMn,
+          captionMn,
+          subTitleEn,
+          captionEn,
           price,
         }),
       }
@@ -56,15 +66,27 @@ const Page = () => {
           />
           <input
             className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-            placeholder="SubTitle"
-            onChange={getSubTitle}
-            value={subTitle}
+            placeholder="SubTitleMn"
+            onChange={getSubTitleMn}
+            value={subTitleMn}
           />
           <input
             className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
-            placeholder="Caption"
-            onChange={getCaption}
-            value={caption}
+            placeholder="SubTitleEn"
+            onChange={getSubTitleEn}
+            value={subTitleEn}
+          />
+          <input
+            className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+            placeholder="CaptionEn"
+            onChange={getCaptionEn}
+            value={captionEn}
+          />
+          <input
+            className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
+            placeholder="CaptionMn"
+            onChange={getCaptionMn}
+            value={captionMn}
           />
           <input
             className="p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-custom-gradient text-white font-mono"
